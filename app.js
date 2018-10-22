@@ -1,6 +1,6 @@
 alert("Sorria para a foto!!!");
-//Navegadores mais antigos podem não implementar mediaDevices, então definimos primeiro um objeto vazio
 window.onload=function(){
+//Navegadores mais antigos podem não implementar mediaDevices, então definimos primeiro um objeto vazio
 
 if (navigator.mediaDevices === undefined) {
     console.log("MediaDevice não suportado no navegador padrão");
