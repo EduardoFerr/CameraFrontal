@@ -26,7 +26,8 @@ window.onload = function () {
 
         video.setAttribute('id', 'camera');
         video.setAttribute('muted', '');
-        video.setAttribute('autoplay', '');
+        video.setAttribute('autoplay', 'true');
+        video.setAttribute('controls', 'true');
         // body.setAttribute('width',window.screen.availWidth);
         // body.setAttribute('height',window.screen.availHeight);
         video.setAttribute('width', window.screen.availWidth);
@@ -46,7 +47,19 @@ window.onload = function () {
         function IniciarCamera() {
             navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: window.screen.availWidth, height: window.screen.availHeight }, audio: false })
                 .then((stream) => {
-                    document.getElementById('camera').srcObject = stream
+                    let video = document.querySelector('video');
+                    if ("srcObject" in video) {
+                        video.srcObject = stream;
+                    } else {
+                        video.src = window.URL.createObjectURL(stream);
+                    };
+                    video.onloadedmetadata = function (e) {
+                        video.play();
+                    };
+                    // document.getElementById('camera').srcObject = stream
+
+                }).catch(function (err) {
+                    console.log(err.name + ": " + err.message);
                 });
             Array.from(document.getElementsByClassName('botao')).forEach(function (arg) { arg.style.display = "inline" })
 
