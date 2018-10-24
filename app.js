@@ -1,4 +1,4 @@
-alert("Sorria para a foto!!!");
+// alert("Sorria para a foto!!!");
 window.onload = function () {
     //Navegadores mais antigos podem não implementar mediaDevices, então definimos primeiro um objeto vazio
 
@@ -20,37 +20,37 @@ window.onload = function () {
             win = global.window,
             body = doc.body,
             canvas = doc.createElement('canvas'),
-            video = doc.createElement('video'),
+            // video = doc.createElement('video'),
             fotografar = doc.createElement('button'),
             ctx = canvas.getContext('2d');
 
 
-        video.setAttribute('id', 'camera');
-        video.setAttribute('muted', '');
-        video.crossOrigin = 'anonymous';
-        video.setAttribute('autoplay','');
-        // video.play();
+        // video.setAttribute('id', 'camera');
+        // video.setAttribute('muted', '');
+        // video.crossOrigin = 'anonymous';
+        // video.setAttribute('autoplay', '');
+        // // video.play();
 
-        // body.setAttribute('width',window.screen.availWidth);
-        // body.setAttribute('height',window.screen.availHeight);
-        video.setAttribute('width', window.screen.availWidth);
-        video.setAttribute('height', window.screen.availHeight);
-        video.setAttribute('position', 'absolute');
-        video.setAttribute('padding', '20px');
-        video.setAttribute('z-index', '0');
+        // // body.setAttribute('width',window.screen.availWidth);
+        // // body.setAttribute('height',window.screen.availHeight);
+        // video.setAttribute('width', window.screen.availWidth);
+        // video.setAttribute('height', window.screen.availHeight);
+        // video.setAttribute('position', 'absolute');
+        // video.setAttribute('padding', '20px');
+        // video.setAttribute('z-index', '1');
 
         // canvas.setAttribute('id', 'foto');
         // canvas.setAttribute('display', 'none');
 
 
-        doc.querySelector('section').appendChild(video);
+        // doc.querySelector('section').appendChild(video);
         // doc.body.appendChild(canvas);
         // doc.body.appendChild(fotografar);
-
-        function IniciarCamera() {
+        
+        function iniciarCamera() {
             navigator.mediaDevices.getUserMedia({
                 video: {
-                    facingMode: 'user', width: window.screen.availWidth, height: window.screen.availHeight 
+                    facingMode: 'user', width: window.screen.availWidth, height: window.screen.availHeight
                 }
             })
                 .then((stream) => {
@@ -91,7 +91,7 @@ window.onload = function () {
         }
 
         document.querySelector('#inicar-camera').addEventListener('click', event => {
-            IniciarCamera();
+            iniciarCamera();
         })
         document.querySelector('#parar-camera').addEventListener('click', event => {
             PararCamera();
