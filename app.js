@@ -50,6 +50,8 @@ window.onload = function () {
             audio: false,
             video: {
                 facingMode: 'user',
+                width: 500,
+                height: 500
                 // deviceId: device.id ? {exact: device.id} : undefined,
                 // width: {exact: candidate.width},    //new syntax
                 // height: {exact: candidate.height}   //new syntax
