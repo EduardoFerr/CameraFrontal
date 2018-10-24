@@ -46,14 +46,22 @@ window.onload = function () {
         // doc.querySelector('section').appendChild(video);
         // doc.body.appendChild(canvas);
         // doc.body.appendChild(fotografar);
-        
+        var constraints = {
+            audio: false,
+            video: {
+                facingMode: 'user',
+                // deviceId: device.id ? {exact: device.id} : undefined,
+                // width: {exact: candidate.width},    //new syntax
+                // height: {exact: candidate.height}   //new syntax
+                // width: { min: 360, ideal: 360, max: 1920 },
+                // height: { min: 640, ideal: 640, max: 1080 },
+            }
+        };
+
         function iniciarCamera() {
-            navigator.mediaDevices.getUserMedia({
-                video: {
-                    facingMode: 'user', width: window.screen.availWidth, height: window.screen.availHeight
-                }
-            })
+            navigator.mediaDevices.getUserMedia(constraints)
                 .then((stream) => {
+                    console.log('Iniciando camera.')
                     const video = document.querySelector('video');
                     video.srcObject = stream;
                 })
