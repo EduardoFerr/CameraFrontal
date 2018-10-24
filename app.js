@@ -11,6 +11,7 @@ window.onload = function () {
 
     if (window.screen.availHeight !== window.screen.height) {
         // alguma coisa está ocupando algum espaço na tela!
+        console.log("Alguma coisa está ocupando algum espaço na tela!")
     }
 
     var App = (function (global) {
@@ -26,8 +27,10 @@ window.onload = function () {
 
         video.setAttribute('id', 'camera');
         video.setAttribute('muted', '');
-        video.setAttribute('autoplay', 'true');
-        video.setAttribute('controls', 'true');
+        video.crossOrigin = 'anonymous';
+        video.setAttribute('autoplay','');
+        // video.play();
+
         // body.setAttribute('width',window.screen.availWidth);
         // body.setAttribute('height',window.screen.availHeight);
         video.setAttribute('width', window.screen.availWidth);
@@ -45,22 +48,32 @@ window.onload = function () {
         // doc.body.appendChild(fotografar);
 
         function IniciarCamera() {
-            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: window.screen.availWidth, height: window.screen.availHeight }, audio: false })
+            navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: 'user', width: window.screen.availWidth, height: window.screen.availHeight 
+                }
+            })
                 .then((stream) => {
-                    let video = document.querySelector('video');
-                    if ("srcObject" in video) {
-                        video.srcObject = stream;
-                    } else {
-                        video.src = window.URL.createObjectURL(stream);
-                    };
-                    video.onloadedmetadata = function (e) {
-                        video.play();
-                    };
-                    // document.getElementById('camera').srcObject = stream
+                    const video = document.querySelector('video');
+                    video.srcObject = stream;
+                })
+                .catch(err => console.error('getUserMedia() failed: ', err));
+            // navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: window.screen.availWidth, height: window.screen.availHeight }, audio: false })
+            //     .then((stream) => {
+            //         let video = document.querySelector('video');
+            //         if ("srcObject" in video) {
+            //             video.srcObject = stream;
+            //         } else {
+            //             video.src = window.URL.createObjectURL(stream);
+            //         };
+            //         video.onloadedmetadata = function (e) {
+            //             video.play();
+            //         };
+            //         // document.getElementById('camera').srcObject = stream
 
-                }).catch(function (err) {
-                    console.log(err.name + ": " + err.message);
-                });
+            //     }).catch(function (err) {
+            //         console.log(err.name + ": " + err.message);
+            //     });
             Array.from(document.getElementsByClassName('botao')).forEach(function (arg) { arg.style.display = "inline" })
 
         }
