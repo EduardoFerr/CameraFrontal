@@ -11,10 +11,11 @@
 </head>
 <style>
 
-	.botao, .botao2{
+	.botao-1, .botao-2{
 		text-align: center;
 		position: fixed;
 		display: none;
+		z-index: 2000;
 	}
 	.btnEsquerdo, .btnEsquerdo2 {
 		border-radius: 15px 50px;
@@ -24,7 +25,7 @@
 		height: 15%;
 		bottom: 2.5%;
 		left: 5%;
-		z-index: 2;
+		
 	}
 	.btnDireito, .btnDireito2 {
 		border-radius: 50px 15px;
@@ -34,7 +35,7 @@
 		height: 15%;
 		bottom: 2.5%;
 		right: 5%;
-		z-index: 2;
+		
 	} 
 	.btnEsquerdo2{
 		background: rgba(25, 0, 255, 0.3);
@@ -46,7 +47,7 @@
 		width: 100%;
 		height: 100%;
 	}
-	canvas{
+	/* canvas{
 		position: absolute;
 		height: auto;
 		width: auto;
@@ -55,25 +56,12 @@
 		padding: 0px;
 		margin: 0px;
 		background-color: lightblue;
-	}
+	} */
 </style>
 
-<body>
-	<script src="./cameraFrontal.js"></script>
-	<section class="check" style="text-align: center; position: absolute; z-index: 1;">
-		<button type="button" class="button btn rpt btn-primary">Repetir</button>
-		<button type="button" id="inicar-camera" class="button btn confirm_ar btn-green">📷 Confirmar e baixar
-			(iniciar camera)</button>
-		<button class="btn botao btnEsquerdo" id="fotografar" title='Tirar uma foto'> Foto </button>
-		<button class="btn botao btnDireito" id="parar-camera" title='Cancelar foto'> Cancelar</button>
-		<button class="btn botao2 btnEsquerdo2" id="enviar-foto" title='Tirar uma foto'> Enviar </button>
-		<button class="btn botao2 btnDireito2" id="repetir-foto" title='Cancelar foto'> Repetir</button>
-		<!-- icones para uso ✅  ❎  📷  ❌  ⚡-->
-
-	</section>
-	<!--video autoplay playsinline muted></video-->
-	<!--canvas id="pintura-canvas"></canvas-->
-
+<body onload="CameraFrontal(this)">
+		<script src="./cameraFrontal.js"></script>
+	<!-- icones para uso ✅  ❎  📷  ❌  ⚡-->
 </body>
 
 
