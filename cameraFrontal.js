@@ -43,21 +43,37 @@ window.onload = function () {
                 canvas.remove();
                 botoes(true);
             }
-            video.setAttribute('muted','');
-            video.setAttribute('playsinline','');
-            video.setAttribute('autoplay','');
-            //video.setAttribute('crossOrigin','anonymous'); //Em caso de problema com o CORS
-            // document.querySelector('section').appendChild(video);
+            $(function () {
+                video.setAttribute('autoplay', '');
+                video.setAttribute('muted', '');
+                video.setAttribute('playsinline', '');
 
-            doc.body.appendChild(video);
+                var constraints = {
+                        audio: false,
+                        video: {
+                        facingMode: 'user'
+                    }
+                }
 
-            navigator.mediaDevices.getUserMedia(constraints)
-                .then((stream) => {
-                    console.log('Iniciando camera.')
-                    const video = document.querySelector('video');
+                navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
                     video.srcObject = stream;
-                })
-                .catch(err => console.error('getUserMedia() falhou: ', err));
+                });
+            });
+//             video.setAttribute('muted','');
+//             video.setAttribute('playsinline','');
+//             video.setAttribute('autoplay','');
+//             //video.setAttribute('crossOrigin','anonymous'); //Em caso de problema com o CORS
+//             // document.querySelector('section').appendChild(video);
+
+//             doc.body.appendChild(video);
+
+//             navigator.mediaDevices.getUserMedia(constraints)
+//                 .then((stream) => {
+//                     console.log('Iniciando camera.')
+//                     const video = document.querySelector('video');
+//                     video.srcObject = stream;
+//                 })
+//                 .catch(err => console.error('getUserMedia() falhou: ', err));
             botoes(true);
 
         }
