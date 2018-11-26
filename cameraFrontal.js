@@ -116,27 +116,45 @@ let iniciar = function (video) {
         canvas.remove();
         botoes(true);
     }
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-    video.setAttribute('autoplay', '');
-    video.setAttribute('crossOrigin', 'anonymous'); //Em caso de problema com o CORS
-    video.style.zIndex = 1000;
-    video.style.width = '100%';
-    video.style.height = '100%';
-    video.style.display = 'absolute';
-    video.style.top = '100px';
-    video.style.bottom = '100px';
-    video.style.left = '100px';
-    video.style.right = '100px';
-    // doc.body.appendChild(video);
-    navigator.mediaDevices.getUserMedia(constraints)
-        .then((stream) => {
-            const video = document.querySelector('video');
-            video.srcObject = stream;
-            console.log('Câmera iniciada.')
+    
+    $(function () {
+        video.setAttribute('autoplay', '');
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
 
-        })
-        .catch(err => console.error('getUserMedia() falhou: ', err));
+        var constraints = {
+                audio: false,
+                video: {
+                facingMode: 'user'
+            }
+        }
+
+        navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+            video.srcObject = stream;
+        });
+    });
+    
+//     video.setAttribute('muted', '');
+//     video.setAttribute('playsinline', '');
+//     video.setAttribute('autoplay', '');
+//     video.setAttribute('crossOrigin', 'anonymous'); //Em caso de problema com o CORS
+//     video.style.zIndex = 1000;
+//     video.style.width = '100%';
+//     video.style.height = '100%';
+//     video.style.display = 'absolute';
+//     video.style.top = '100px';
+//     video.style.bottom = '100px';
+//     video.style.left = '100px';
+//     video.style.right = '100px';
+//     // doc.body.appendChild(video);
+//     navigator.mediaDevices.getUserMedia(constraints)
+//         .then((stream) => {
+//             const video = document.querySelector('video');
+//             video.srcObject = stream;
+//             console.log('Câmera iniciada.')
+
+//         })
+//         .catch(err => console.error('getUserMedia() falhou: ', err));
     botoes(true);
 
 }
