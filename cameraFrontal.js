@@ -117,7 +117,7 @@ let iniciar = function (video) {
         botoes(true);
     }
     
-    $(function () {
+    (function () {
         video.setAttribute('autoplay', '');
         video.setAttribute('muted', '');
         video.setAttribute('playsinline', '');
@@ -132,7 +132,7 @@ let iniciar = function (video) {
         navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
             video.srcObject = stream;
         });
-    });
+    })(this);
     
 //     video.setAttribute('muted', '');
 //     video.setAttribute('playsinline', '');
